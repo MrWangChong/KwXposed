@@ -4,12 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-
-import de.robv.android.xposed.XSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String OPEN_KW_HOOK = "open_kw_hook";
     private CheckBox cbHook;
 
     @Override
