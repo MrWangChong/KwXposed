@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -68,6 +69,19 @@ public class KwTutorial implements IXposedHookLoadPackage {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 Log.d(TAG, "cn.kuwo.base.bean.Music.isSpPrivilege param.setResult(true)");
                 param.setResult(true);
+            }
+        });
+
+        findAndHookMethod("cn.kuwo.player.a.d", lpparam.classLoader, "a", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            }
+
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Log.d(TAG, "cn.kuwo.player.a.d.a param.setResult(false)");
+                XposedBridge.log("cn.kuwo.player.a.d.a param.setResult(false)");
+                param.setResult(false);
             }
         });
 
