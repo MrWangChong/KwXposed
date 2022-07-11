@@ -72,15 +72,15 @@ public class KwTutorial implements IXposedHookLoadPackage {
             }
         });
 
-        findAndHookMethod("cn.kuwo.player.a.d", lpparam.classLoader, "a", new XC_MethodHook() {
+        findAndHookMethod("cn.kuwo.player.screen.d", lpparam.classLoader, "a", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
             }
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Log.d(TAG, "cn.kuwo.player.a.d.a param.setResult(false)");
-                XposedBridge.log("cn.kuwo.player.a.d.a param.setResult(false)");
+                Log.d(TAG, "cn.kuwo.player.screen.d.a param.setResult(false)");
+                XposedBridge.log("cn.kuwo.player.screen.d.a param.setResult(false)");
                 param.setResult(false);
             }
         });
