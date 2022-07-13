@@ -2,5 +2,6 @@
 <resources>
     <string-array name="xposed_scope">
         <item>cn.kuwo.player</item>
+        <item>com.dragon.read</item>
     </string-array>
 </resources>

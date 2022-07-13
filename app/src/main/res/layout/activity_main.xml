@@ -10,31 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="酷我xposed"
+        android:text="这个界面没有任何作用，呵呵哈哈哈"
         android:textColor="@color/black"
         android:textSize="18sp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开关"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <CheckBox
-            android:id="@+id/cbHook"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp" />
-    </LinearLayout>
 
 </LinearLayout>
