@@ -3,6 +3,8 @@ package com.wc.kwxposed;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.List;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -18,7 +20,7 @@ public class KWHook {
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Log.d(MainHook.TAG, "cn.kuwo.peculiar.specialinfo.SpecialRealInfo.getState param.setResult(1)");
+                //Log.d(MainHook.TAG, "cn.kuwo.peculiar.specialinfo.SpecialRealInfo.getState param.setResult(1)");
                 param.setResult(1);
             }
         });
@@ -29,7 +31,7 @@ public class KWHook {
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Log.d(MainHook.TAG, "cn.kuwo.peculiar.specialinfo.SpecialRealInfo.getLeftDays param.setResult(1024L)");
+                //Log.d(MainHook.TAG, "cn.kuwo.peculiar.specialinfo.SpecialRealInfo.getLeftDays param.setResult(1024L)");
                 param.setResult(1024L);
             }
         });
@@ -40,7 +42,7 @@ public class KWHook {
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Log.d(MainHook.TAG, "cn.kuwo.base.bean.Music.getSpPrivilege param.setResult(1)");
+                //Log.d(MainHook.TAG, "cn.kuwo.base.bean.Music.getSpPrivilege param.setResult(1)");
                 param.setResult(1);
             }
         });
@@ -52,7 +54,19 @@ public class KWHook {
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Log.d(MainHook.TAG, "cn.kuwo.base.bean.Music.isSpPrivilege param.setResult(true)");
+                //Log.d(MainHook.TAG, "cn.kuwo.base.bean.Music.isSpPrivilege param.setResult(true)");
+                param.setResult(true);
+            }
+        });
+
+        XposedHelpers.findAndHookMethod("cn.kuwo.peculiar.speciallogic.ConsumptionQueryUtil", lpparam.classLoader, "onwLimited", long.class, List.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            }
+
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Log.d(MainHook.TAG, "cn.kuwo.peculiar.speciallogic.ConsumptionQueryUtil.onwLimited param.setResult(true)");
                 param.setResult(true);
             }
         });
