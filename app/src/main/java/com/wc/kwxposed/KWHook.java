@@ -13,6 +13,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class KWHook {
     public static void hookVip(XC_LoadPackage.LoadPackageParam lpparam) {
         Log.e(MainHook.TAG, "进入酷我音乐");
+        //vip
         XposedHelpers.findAndHookMethod("cn.kuwo.peculiar.specialinfo.SpecialRealInfo", lpparam.classLoader, "getState", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -35,6 +36,7 @@ public class KWHook {
                 param.setResult(1024L);
             }
         });
+        //免费听歌
         XposedHelpers.findAndHookMethod("cn.kuwo.base.bean.Music", lpparam.classLoader, "getSpPrivilege", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -46,7 +48,6 @@ public class KWHook {
                 param.setResult(1);
             }
         });
-
         XposedHelpers.findAndHookMethod("cn.kuwo.base.bean.Music", lpparam.classLoader, "isSpPrivilege", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -58,7 +59,7 @@ public class KWHook {
                 param.setResult(true);
             }
         });
-
+        //付费歌曲查询
         XposedHelpers.findAndHookMethod("cn.kuwo.peculiar.speciallogic.ConsumptionQueryUtil", lpparam.classLoader, "onwLimited", long.class, List.class, new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -70,7 +71,19 @@ public class KWHook {
                 param.setResult(true);
             }
         });
+        //下载加密
+        XposedHelpers.findAndHookMethod("cn.kuwo.peculiar.specialdialogconfig.VipConfigMgr", lpparam.classLoader, "isEncryptDownOpen", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            }
 
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Log.d(MainHook.TAG, "cn.kuwo.peculiar.specialdialogconfig.VipConfigMgr.isEncryptDownOpen param.setResult(false)");
+                param.setResult(false);
+            }
+        });
+        //热启动广告
         XposedHelpers.findAndHookMethod("cn.kuwo.player.screen.ScreenAdUtils", lpparam.classLoader, "hotScreenSwitch", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -83,7 +96,6 @@ public class KWHook {
                 param.setResult(false);
             }
         });
-
         //签名校验
         XposedHelpers.findAndHookMethod("cn.kuwo.base.utils.KwLBSUtils", lpparam.classLoader, "getSignatureSha1", Context.class, new XC_MethodHook() {
             @Override
